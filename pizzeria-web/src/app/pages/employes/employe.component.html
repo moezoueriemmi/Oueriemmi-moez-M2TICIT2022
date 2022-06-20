@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+
+
+
+
+      <table class="table table-bordred">
+        <tr><td>ID</td><td>Nom</td><td>prenom</td><td>telephone</td><td>poste</td><td>salaire</td><td>datedebut</td><td>repos</td><td>Actions</td></tr>
+        <tr *ngFor="let employe of employes">
+          <td>{{employe.idemp}}</td>
+          <td> {{employe.nom}}</td>
+          <td>{{employe.prenom}}</td>
+          <td>{{employe.tel}}</td>
+          <td>{{employe.poste}}</td>
+          <td>{{employe.salaire}}</td>
+          <td>{{employe.datentree}}</td>
+          <td>{{employe.jourrepos}}</td>
+          <td>
+
+            <a class="btn btn-danger"style="font-size:medium;color:
+              darkred;background-color:white" title="supprimer"
+              (click)="deleteEmploye(employe.idemp);"><i class="fa fa-trash"></i></a>
+            <a class="btn btn-success" style="font-size:medium;color: rgb(0,
+              139, 63);background-color:white" title="Modifier"
+              (click)="Updateemploye(employe.idemp);"><i class="fa fa-edit"></i></a>
+          </td>
+        </tr>
+
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-md-8">
+    <div class="card card-chart">
+      <div class="card-header">
+        <h5 class="card-title">Ajouter un Employé</h5>
+        <p class="card-category"></p>
+      </div>
+
+      <div class="card-footer">
+        <form method="post">
+          <div class="form-group">
+            <label for="Nom">*Nom</label>
+            <input type="text" class="form-control" id="Nom" placeholder=""
+              name="nom" [(ngModel)]="employe.nom">
+          </div>
+          <div class="form-group">
+            <label for="prenom">*prenom</label>
+            <input type="text" class="form-control" id="prenom" placeholder=""
+              name="prenom" [(ngModel)]="employe.prenom">
+          </div>
+          <div class="form-group">
+            <label for="tel">*telephone</label>
+            <input type="text" class="form-control" id="tel" placeholder=""
+              name="tel" [(ngModel)]="employe.tel">
+          </div>
+
+          <div class="form-group">
+            <label for="poste">*poste</label>
+            <textarea class="form-control" id="poste" rows="3" name="poste"
+              [(ngModel)]="employe.poste"></textarea>
+          </div>
+          <label for="salaire">*salaire</label>
+          <input type="number" class="form-control" id="salaire" placeholder=""
+            name="salaire" [(ngModel)]="employe.salaire">
+          <div class="form-group">
+            <label for="datentree">*date debut</label>
+            <textarea class="form-control" id="datentree" rows="3"
+              name="datentree" [(ngModel)]="employe.datentree"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="jourrepos">*jour du repos</label>
+            <textarea class="form-control" id="jourrepos" rows="3"
+              name="jourrepos" [(ngModel)]="employe.jourrepos"></textarea>
+          </div>
+
+          <br><br>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="submit" class="btn btn-primary btn-round"
+                (click)="saveEmploye()">Ajouter</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

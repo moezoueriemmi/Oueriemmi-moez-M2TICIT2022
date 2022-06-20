@@ -1,0 +1,56 @@
+<div class="row">
+
+  <div class="col-md-8">
+    <div class="card card-chart">
+      <div class="card-header">
+        <h5 class="card-title">Modifier une livraison</h5>
+        <p class="card-category"></p>
+      </div>
+
+      <div class="card-footer">
+        <form (ngSubmit)="onSubmit()">
+
+
+          <div class="col-md-12">
+            <label class="control-label">Commande</label><br />
+            <select [(ngModel)]="selectedCommande" friendly-name="commande"
+              id="commande" name="commande" class="col-md-6 form-control"
+              ng-required="true" (ngModelChange)='onSelected($event)'>
+
+
+              <option *ngFor='let commande of
+                commandes'[ngValue]="commande.id_com"><p
+                  *ngIf="commande.etat=='PRETE' &&
+                  commande.type=='LIVRAISON' "  >{{commande.client.nom}}.{{commande.client.prenom}}</option>
+              </select>
+            </div>
+            <br><br>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="livreur"> Livreur</label>
+                <select [(ngModel)]="selectedLivreur" friendly-name="livreur"
+                  id="livreur" name="livreur" class="col-md-6 form-control"
+                  ng-required="true" (ngModelChange)='onChange($event)'>
+                  <option *ngFor='let livreur of livreurs'
+                    [ngValue]="livreur.idlivreur">{{livreur.nom}}.{{livreur.prenom}}</option>
+                </select>
+
+              </div>
+            </div>
+
+
+            <br><br>
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button class="btn btn-primary btn-round">Modifier</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>

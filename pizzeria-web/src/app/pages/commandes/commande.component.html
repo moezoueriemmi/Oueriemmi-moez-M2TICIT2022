@@ -1,0 +1,75 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="input-group no-border">
+        <input type="text"  [(ngModel)]="nomc" (input)="search()"  class="form-control" placeholder="Search...">
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <i class="nc-icon nc-zoom-split"></i>
+          </div>
+        </div>
+      </div>
+      
+      <table class="table table-striped">
+        <tr><td>ID</td><td>Articles</td><td>Nom&PrenomCl</td><td>TelCl</td><td>Date</td><td>Etat</td><td>Prix/DT</td><td>Type</td><td>Adresse
+          </td><td></td><td>Actions</td></tr>
+
+        <tr *ngFor="let commande of commandes">
+          <td>{{commande.id_com}}</td>
+          <td><p *ngFor="let ligne of lignedecommandes"><span
+                *ngIf="ligne.commande.id_com==commande.id_com">{{ligne.article.nom+"
+                : "}}{{ligne.remarque }}[{{ligne.qte}}]</span></td>
+            <td>{{commande.client.nom}}.{{commande.client.prenom}}</td>
+            <td>{{commande.client.tel}}</td>
+
+            <td>{{commande.date_com | date:'longDate'}}</td>
+            <td>{{commande.etat}}</td>
+            <td>{{commande.prix}}</td>
+            <td>{{commande.type}}</td>
+            <td>{{commande.adresse}}</td>
+            <td *ngIf="commande.etat == 'pas encore'">
+
+              <input type="submit" style="background-color: rgb(247, 100, 9);"
+                (click)="send(commande.id_com)" value="PRETE">
+
+
+            </td>
+            <td *ngIf="commande.etat == 'PRETE'">
+
+              <input type="submit" style="background-color:
+                green;text-decoration-color: aliceblue;" value="PRETE">
+
+
+            </td>
+            <td *ngIf="commande.etat == 'Annuler'">
+
+              <input type="submit" style="background-color:
+                rgb(244, 7, 7);text-decoration-color: aliceblue;" value="ANNULER">
+
+
+            </td>
+            <td> <a class="btn btn-danger"style="font-size:medium;color:
+                darkred;background-color:white" title="supprimer"
+                (click)="deleteCommande(commande.id_com);"><i class="fa
+                  fa-trash"></i></a>
+              <a class="btn btn-success" style="font-size:medium;color: rgb(0,
+                139, 63);background-color:white" title="Modifier"
+                (click)="UpdateCommande(commande.id_com);"><i class="fa
+                  fa-edit"></i></a></td></tr>
+
+        </table>
+        <div class="card-footer">
+          <hr>
+          <div class="stats">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+
+
+
+  </div>

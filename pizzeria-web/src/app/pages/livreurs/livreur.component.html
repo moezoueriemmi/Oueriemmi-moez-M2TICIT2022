@@ -1,0 +1,120 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="input-group no-border">
+        <input type="text"  [(ngModel)]="liv" (input)="search()"  class="form-control" placeholder="Search...">
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <i class="nc-icon nc-zoom-split"></i>
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped">
+        <tr><td>ID</td><td>Nom</td><td>Prenom</td><td>Tel</td><td>Adresse</td><td>prix(DT)/Livraison</td><td>Actions</td></tr>
+        <tr *ngFor="let livreur of livreurs">
+          <td>{{livreur.idlivreur}}</td>
+          <td>{{livreur.nom}}</td>
+          <td>{{livreur.prenom}}</td>
+          <td>{{livreur.tel}}</td>
+          <td>{{livreur.adresse}}</td>
+          <td>{{livreur.prix}}</td>
+
+          <td>
+            <a class="btn btn-danger" style="font-size:medium;color:
+              darkred;background-color:white" title="supprimer"
+              (click)="deleteLivreur(livreur.idlivreur);"><i class="fa
+                fa-trash"></i></a>
+            <a class="btn btn-success" style="font-size:medium;color: rgb(0,
+              139, 63);background-color:white" title="Modifier"
+              (click)="UpdateLivreur(livreur.idlivreur);"><i class="fa fa-edit"></i></a>
+          </td>
+
+        </table>
+        <div class="card-footer">
+          <hr>
+          <div class="stats">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-md-8">
+      <div class="card card-chart">
+        <div class="card-header">
+          <h5 class="card-title">Ajouter un Livreur</h5>
+          <p class="card-category"></p>
+        </div>
+
+        <div class="card-footer">
+          <form method="post">
+            <div class="form-group" [class.has-error]="nom.invalid &&
+              nom.touched">
+              <label for="Nom"> *Nom</label>
+              <input type="text" required pattern="[a-zA-Z]" #nom="ngModel"
+                class="form-control" id="Nom" name="nom"
+                [(ngModel)]="livreur.nom"
+                placeholder="">
+              <span class="help-block" *ngIf="nom.errors?.required &&
+                nom.touched"
+                style="color:red ;">Nom est obligatoire</span>
+              <span class="help-block" *ngIf="nom.errors?.pattern &&
+                nom.touched"
+                style="color:red ;">Nom est invalide </span>
+            </div>
+            <div class="form-group" [class.has-error]="prenom.invalid &&
+              prenom.touched">
+              <label for="prenom">*Prenom</label>
+              <input type="text" required pattern="[a-zA-Z]" #prenom="ngModel"
+                class="form-control" id="MP" name="prenom"
+                [(ngModel)]="livreur.prenom" placeholder="">
+              <span class="help-block" *ngIf="prenom.errors?.required &&
+                prenom.touched" style="color:red ;">Prenom est obligatoire</span>
+              <span class="help-block" *ngIf="prenom.errors?.pattern &&
+                prenom.touched" style="color:red ;">Prenom est invalide </span>
+            </div>
+            <div class="form-group" [class.has-error]="tel.invalid &&
+              tel.touched">
+
+              <label for="tel">*Telephone</label>
+              <input type="text" required pattern="[0-9 ]{8}" #tel="ngModel"
+                class="form-control" id="tel" name="tel"
+                [(ngModel)]="livreur.tel"
+                placeholder="">
+              <span class="help-block" *ngIf="tel.errors?.required &&
+                tel.touched"
+                style="color:red ;">Numéro est obligatoire</span>
+              <span class="help-block" *ngIf="tel.errors?.pattern &&
+                tel.touched"
+                style="color:red ;">Numéro est invalide </span>
+            </div>
+            <div class="form-group" [class.has-error]="adresse.invalid &&
+              adresse.touched">
+              <label for="adresse">*adresse</label>
+              <input type="text" required pattern="(?=.*[a-z])"
+                #adresse="ngModel" class="form-control" id="adresse"
+                name="adresse" [(ngModel)]="livreur.adresse" placeholder="">
+              <span class="help-block" *ngIf="adresse.errors?.required &&
+                adresse.touched" style="color:red ;">Adresse est obligatoire</span>
+              <!-- <span class="help-block" *ngIf="adresse.errors?.pattern && adresse.touched" style="color:red ;">Adresse est invalide </span>  -->
+            </div>
+            <label for="prix">*prix</label>
+            <input type="number" class="form-control" id="prix" name="prix"
+              [(ngModel)]="livreur.prix" placeholder="">
+            <br><br>
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="submit" class="btn btn-primary btn-round"
+                  (click)="saveLivreur()">Ajouter</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>

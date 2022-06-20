@@ -1,0 +1,162 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="input-group no-border">
+        <input type="text"  [(ngModel)]="usen" (input)="search()"  class="form-control" placeholder="Search...">
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <i class="nc-icon nc-zoom-split"></i>
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped">
+        <tr><td>ID</td><td>Nom</td><td>Prenom</td><td>Email</td><td>Tel</td><td>Adresse</td><td>login</td><td>Password</td><td>Role</td><td>Actions</td></tr>
+        <tr *ngFor="let user of users">
+          <td>{{user.id}}</td>
+          <td>{{user.nom}}</td>
+          <td>{{user.prenom}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.tel}}</td>
+          <td>{{user.adresse}}</td>
+          <td>{{user.login}}</td>
+          <td>{{user.pwd}}</td>
+          <td>{{user.role}}</td>
+
+
+          <td>
+            <a class="btn btn-danger"style="font-size:medium;color:
+              darkred;background-color:white" title="supprimer"
+              (click)="deleteUser(user.id);"><i class="fa fa-trash"></i></a>
+            <a class="btn btn-success" style="font-size:medium;color: rgb(0,
+              139, 63);background-color:white" title="Modifier"
+              (click)="UpdateUser(user.id);"><i class="fa fa-edit"></i></a>
+          </td>
+
+        </table>
+        <div class="card-footer">
+          <hr>
+          <div class="stats">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-md-8">
+      <div class="card card-chart">
+        <div class="card-header">
+          <h5 class="card-title">Ajouter un utilisateur</h5>
+          <p class="card-category"></p>
+        </div>
+
+        <div class="card-footer">
+          <form method="post" name="myForm">
+            <div class="form-group" [class.has-error]="nom.invalid &&
+              nom.touched">
+              <label for="Nom">*Nom</label>
+              <input type="text" required pattern="[a-zA-Z]" #nom="ngModel"
+                class="form-control" id="Nom" name="nom" [(ngModel)]="user.nom"
+                placeholder="">
+              <span class="help-block" *ngIf="nom.errors?.required &&
+                nom.touched" style="color:red ;">Nom est obligatoire</span>
+              <span class="help-block" *ngIf="nom.errors?.pattern &&
+                nom.touched" style="color:red ;">Nom est invalide </span>
+            </div>
+            <div class="form-group" [class.has-error]="prenom.invalid &&
+              prenom.touched">
+              <label for="prenom">*Prenom</label>
+              <input type="text" required pattern="[a-zA-Z]" #prenom="ngModel"
+                class="form-control" id="MP" name="prenom"
+                [(ngModel)]="user.prenom" placeholder="">
+              <span class="help-block" *ngIf="prenom.errors?.required &&
+                prenom.touched" style="color:red ;">Prenom est obligatoire</span>
+              <span class="help-block" *ngIf="prenom.errors?.pattern &&
+                prenom.touched" style="color:red ;">Prenom est invalide </span>
+            </div>
+            <div class="form-group" [class.has-error]="email.invalid &&
+              email.touched">
+              <label for="email">*Email</label>
+              <input type="email" required
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                #email="ngModel" class="form-control" id="email" name="email"
+                [(ngModel)]="user.email" placeholder="" ng-required="myVar">
+              <span class="help-block" *ngIf="email.errors?.required &&
+                email.touched"style="color:red ;">Email est obligatoire</span>
+              <span class="help-block" *ngIf="email.errors?.pattern &&
+                email.touched"style="color:red ;">Email est invalide </span>
+            </div>
+            <div class="form-group" [class.has-error]="tel.invalid &&
+              tel.touched">
+
+              <label for="tel">*Telephone</label>
+              <input type="text" required pattern="[0-9 ]{8}" #tel="ngModel"
+                class="form-control" id="tel" name="tel" [(ngModel)]="user.tel"
+                placeholder="">
+              <span class="help-block" *ngIf="tel.errors?.required &&
+                tel.touched" style="color:red ;">Numéro est obligatoire</span>
+              <span class="help-block" *ngIf="tel.errors?.pattern &&
+                tel.touched" style="color:red ;">Numéro est invalide </span>
+            </div>
+            <div class="form-group" [class.has-error]="adresse.invalid &&
+              adresse.touched">
+              <label for="adresse">*adresse</label>
+              <input type="text" required pattern="(?=.*[a-z])"
+                #adresse="ngModel" class="form-control" id="adresse"
+                name="adresse" [(ngModel)]="user.adresse" placeholder="">
+              <span class="help-block" *ngIf="adresse.errors?.required &&
+                adresse.touched" style="color:red ;">Adresse est obligatoire</span>
+              <!-- <span class="help-block" *ngIf="adresse.errors?.pattern && adresse.touched" style="color:red ;">Adresse est invalide </span>  -->
+            </div>
+            <div class="form-group" [class.has-error]="login.invalid &&
+              login.touched">
+              <label for="login">*Login</label>
+              <input type="text" required pattern="" #login="ngModel"
+                class="form-control" id="login" name="login"
+                [(ngModel)]="user.login" placeholder="">
+              <span class="help-block" *ngIf="login.errors?.required &&
+                login.touched" style="color:red ;">Login est obligatoire</span>
+              <span class="help-block" *ngIf="login.errors?.pattern &&
+                login.touched" style="color:red ;">Login est invalide </span>
+            </div>
+            <div class="form-group" [class.has-error]="pwd.invalid &&
+              pwd.touched">
+              <label for="pwd">*password</label>
+              <input type="text" required
+                pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}" #pwd="ngModel"
+                class="form-control" id="pwd" name="pwd" [(ngModel)]="user.pwd"
+                placeholder="" required="required">
+              <span class="help-block" *ngIf="pwd.errors?.required &&
+                pwd.touched" style="color:red ;">Mot de passe est obligatoire</span>
+              <span class="help-block" *ngIf="pwd.errors?.pattern &&
+                pwd.touched" style="color:red ;">Mot de passe est invalide
+              </span>
+            </div>
+            <div class="form-group" [class.has-error]="role.invalid &&
+              role.touched">
+              <label for="role">*Role</label>
+
+              <input type="text" required pattern="[a-z]" #role="ngModel"
+                class="form-control" id="role" name="role"
+                [(ngModel)]="user.role" placeholder="Admin OU Employe">
+              <span class="help-block" *ngIf="role.errors?.required &&
+                role.touched" style="color:red ;">Role est obligatoire</span>
+              <span class="help-block" *ngIf="role.errors?.pattern &&
+                role.touched" style="color:red ;">Role est invalide </span>
+            </div>
+            <br><br>
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="submit" class="btn btn-primary btn-round"
+                  (click)="saveUser()">Ajouter</button>
+              </div>
+            </div>
+
+          </form>
+        </div>s
+      </div>
+    </div>
+
+  </div>

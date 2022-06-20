@@ -1,0 +1,70 @@
+<div class="row">
+
+  <div class="col-md-8">
+    <div class="card card-chart">
+      <div class="card-header">
+        <h5 class="card-title">Modifier un Employe</h5>
+        <p class="card-category"></p>
+      </div>
+
+      <div class="card-footer">
+        <form (ngSubmit)="onSubmit()">
+
+          <div class="form-group">
+            <label for="Nom"> Nom</label>
+            <input type="text" class="form-control" id="Nom" placeholder=""
+              name="nom" value="{{employe.nom}}" [(ngModel)]="employe.nom">
+          </div>
+
+          <div class="form-group">
+            <label for="prenom"> Prenom</label>
+            <input type="texte" class="form-control" id="prenom" placeholder=""
+              name="prenom" value="{{employe.prenom}}"
+              [(ngModel)]="employe.prenom">
+          </div>
+          <div class="form-group">
+            <label for="telephone"> Telephone</label>
+            <input type="texte" class="form-control" id="telephone"
+              placeholder="" name="telephone" value="{{employe.tel}}"
+              [(ngModel)]="employe.tel">
+          </div>
+          <div class="form-group">
+            <label for="poste"> Poste</label>
+            <input type="texte" class="form-control" id="poste" placeholder=""
+              name="poste" value="{{employe.poste}}"
+              [(ngModel)]="employe.poste">
+          </div>
+
+          <div class="form-group">
+            <label for="salaire"> Salaire</label>
+            <input type="number" class="form-control" id="salaire"
+              placeholder="" name="salaire" value="{{employe.salaire}}"
+              [(ngModel)]="employe.salaire">
+          </div>
+          <div class="form-group">
+            <label for="datedebut"> Date debut</label>
+            <input type="texte" class="form-control" id="datentree"
+              placeholder="" name="datentree" value="{{employe.datentree}}"
+              [(ngModel)]="employe.datentree">
+          </div>
+          <div class="form-group">
+            <label for="jourrepos">Jour Repos</label>
+            <input type="texte" class="form-control" id="jourrepos"
+              placeholder="" name="jourrepos" value="{{employe.jourrepos}}"
+              [(ngModel)]="employe.jourrepos">
+          </div>
+          <br><br>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button class="btn btn-primary btn-round">Modifier</button>
+            </div>
+            <div class="update ml-auto mr-auto">
+              <button class="btn btn-primary btn-round" (click)="annuler()">Annuler</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

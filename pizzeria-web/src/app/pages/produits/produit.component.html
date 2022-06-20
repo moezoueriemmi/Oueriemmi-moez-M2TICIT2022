@@ -1,0 +1,99 @@
+ <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="input-group no-border">
+        <input type="text"  [(ngModel)]="Nomp" (input)="search()"  class="form-control" placeholder="Search...">
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <i class="nc-icon nc-zoom-split"></i>
+          </div>
+        </div>
+      </div>
+      <table class="table table-bordred">
+        <tr><td>ID</td><td>image</td><td>Nom</td><td>Quantité(KG/L)</td><td>Prix/DT</td><td>Actions</td></tr>
+        <tr *ngFor="let produit of produits">
+          <td>{{produit.id}}</td>
+          <td><img src="http://localhost:7999/photop/{{produit.id}}"
+              style="height: 50px;width: 50px;"> </td>
+          <td>{{produit.nom}}</td>
+          <td>{{produit.qte}}</td>
+          <td>{{produit.prix}}</td>
+          <td>
+
+            <a class="btn btn-danger" style="font-size:medium;color:
+              darkred;background-color:white" title="supprimer"
+              (click)="deleteProduit(produit.id);"><i class="fa fa-trash"></i></a>
+            <a class="btn btn-success" style="font-size:medium;color: rgb(0,
+              139, 63);background-color:white" title="Modifier"
+              (click)="Updateproduit(produit.id);"><i class="fa fa-edit"></i></a>
+          </td>
+        </tr>
+
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-md-8">
+    <div class="card card-chart">
+      <div class="card-header">
+        <h5 class="card-title">Ajouter un Produit</h5>
+        <p class="card-category"></p>
+      </div>
+
+      <div class="card-footer">
+        <form method="post" name="myForm">
+
+          <div class="form-group" [class.has-error]="nom.invalid &&
+            nom.touched">
+            <label for="Nom"> *Nom</label>
+            <input type="text" required pattern="[a-zA-Z]" #nom="ngModel"
+              class="form-control" id="Nom" name="nom" [(ngModel)]="produit.nom"
+              placeholder="">
+            <span class="help-block" *ngIf="nom.errors?.required && nom.touched"
+              style="color:red ;">Nom est obligatoire</span>
+            <span class="help-block" *ngIf="nom.errors?.pattern && nom.touched"
+              style="color:red ;">Nom est invalide </span>
+          </div>
+          <div class="form-group">
+            <label for="Quantite">*Quantité(KG)</label>
+            <input type="number" class="form-control" id="Quantite"
+              placeholder="" name="qte" [(ngModel)]="produit.qte">
+          </div>
+
+          <label for="prix">*Prix</label>
+          <input type="number" class="form-control" id="prix" placeholder=""
+            name="prix" [(ngModel)]="produit.prix">
+
+          <div class="file-field">
+
+            <br><br>
+            <label for="img">*Image</label>
+            <br>
+
+            <input type="file" multiple name="image"
+              [(ngModel)]="produit.image">
+
+
+          </div>
+
+
+          <br><br>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button type="submit" class="btn btn-primary btn-round"
+                (click)="saveProduit()">Ajouter</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

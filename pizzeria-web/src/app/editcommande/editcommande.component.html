@@ -1,0 +1,84 @@
+<div class="row">
+
+  <div class="col-md-8">
+    <div class="card card-chart">
+      <div class="card-header">
+        <h5 class="card-title">Modifier une commande</h5>
+        <p class="card-category"></p>
+      </div>
+
+      <div class="card-footer">
+        <form (ngSubmit)="onSubmit()">
+
+          <div class="form-group">
+            <label for="article"> Article</label>
+            <select *ngFor='let article of
+              commande.articles'[(ngModel)]="selectedArticle"
+              friendly-name="article" id="article" name="article"
+              class="col-md-6 form-control" ng-required="true"
+              (ngModelChange)='onChange($event)'>
+
+
+              <option *ngFor='let article of articles' [ngValue]="article.idart"
+                [selected]="article.idart==35">{{article.nom}}</option>
+              <input type="text" name="remarque" [(ngModel)]="remarque">
+            </select>
+
+          </div>
+          <div class="form-group">
+            <label for="nom"> nom</label>
+            <input type="texte" class="form-control" id="nom" placeholder=""
+              name="nom" value="{{commande.client.nom}}"
+              [(ngModel)]="commande.client.nom">
+          </div>
+          <div class="form-group">
+            <label for="prenom"> Prenom</label>
+            <input type="texte" class="form-control" id="prenom" placeholder=""
+              name="prenom" value="{{commande.client.prenom}}"
+              [(ngModel)]="commande.client.prenom">
+          </div>
+
+          <div class="form-group">
+            <label for="telephone"> Telephone</label>
+            <input type="texte" class="form-control" id="telephone"
+              placeholder="" name="telephone" value="{{commande.client.tel}}"
+              [(ngModel)]="commande.client.tel">
+          </div>
+          <div class="form-group">
+            <label for="date"> Date</label>
+            <input type="date" class="form-control" id="date" placeholder=""
+              name="date" value="{{commande.date_com}}"
+              [(ngModel)]="commande.date_com">
+          </div>
+
+          <div class="form-group">
+            <label for="etat"> Etat</label>
+            <input type="texte" class="form-control" id="etat" placeholder=""
+              name="etat" value="{{commande.etat}}" [(ngModel)]="commande.etat">
+          </div>
+          <div class="form-group">
+            <label for="type"> Type</label>
+            <input type="texte" class="form-control" id="type" placeholder=""
+              name="type" value="{{commande.type}}" [(ngModel)]="commande.type">
+          </div>
+          <div class="form-group">
+            <label for="adresse">Adresse</label>
+            <input type="texte" class="form-control" id="adresse" placeholder=""
+              name="adresse" value="{{commande.adresse}}"
+              [(ngModel)]="commande.adresse">
+          </div>
+          <br><br>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button class="btn btn-primary btn-round">Modifier</button>
+            </div>
+            <div class="update ml-auto mr-auto">
+              <button class="btn btn-primary btn-round" (click)="annuler()">Annuler</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

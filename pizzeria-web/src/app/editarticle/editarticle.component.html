@@ -1,0 +1,57 @@
+<div class="row">
+
+  <div class="col-md-8">
+    <div class="card card-chart">
+      <div class="card-header">
+        <h5 class="card-title">Modifier un Article</h5>
+        <p class="card-category"></p>
+      </div>
+
+      <div class="card-footer">
+        <form (ngSubmit)="onSubmit()">
+
+          <div class="form-group">
+            <label for="Nom"> Nom</label>
+            <input type="text" class="form-control" id="Nom" placeholder=""
+              name="nom" value="{{article.nom}}" [(ngModel)]="article.nom">
+          </div>
+
+          <div class="form-group">
+            <label for="ingredients"> Ingredients</label>
+            <input type="text" class="form-control" id="ingredients"
+              placeholder="" name="ingredients" value="{{article.ingredients}}"
+              [(ngModel)]="article.ingredients">
+          </div>
+          <br><br>
+          <label class="control-label">Categorie</label><br />
+          <select [(ngModel)]="selectedCategorie" friendly-name="commande"
+            id="commande" name="commande" class="col-md-6 form-control"
+            ng-required="true" (ngModelChange)='onSelected($event)'>
+
+
+            <option value="PIZZA">PIZZA</option>
+            <option value="PLAT">PLAT</option>
+            <option value="CREPE">CREPE</option>
+            <option value="SANDWICH">SANDWICH</option>
+            <option value="BOISSON">BOISSON</option>
+
+          </select>
+
+          <label for="prix"> Prix</label>
+          <input type="number" class="form-control" id="prix" placeholder=""
+            name="prix" value="{{article.prix}}" [(ngModel)]="article.prix">
+          <br><br>
+          <div class="row">
+            <div class="update ml-auto mr-auto">
+              <button class="btn btn-primary btn-round">Modifier</button>
+            </div>
+            <div class="update ml-auto mr-auto">
+              <button class="btn btn-primary btn-round" (click)="annuler()">Annuler</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

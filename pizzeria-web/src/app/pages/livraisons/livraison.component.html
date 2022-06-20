@@ -1,0 +1,108 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+
+
+      <div class="input-group no-border">
+        <input type="text"  [(ngModel)]="nomcl" (input)="search()"  class="form-control" placeholder="Search...">
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <i class="nc-icon nc-zoom-split"></i>
+          </div>
+        </div>
+      </div>
+
+      <table class="table table-bordred">
+        <tr><td>ID</td><td>Articles</td><td>NomPrenomClient</td><td>Telephone</td><td>Adresse</td><td>Livreur</td><td>PrixLivreur</td><td>PrixCommande</td><td>PrixTotal/DT</td><td></td><td>Actions</td></tr>
+        <tr *ngFor="let livraison of livraisons">
+          {{livraison.idlivraison}}
+          <td><p *ngFor="let ligne of lignedecommandes"><span
+                *ngIf="ligne.commande.id_com==livraison.commande.id_com">{{ligne.article.nom+"
+                : "}}{{ligne.remarque }}[{{ligne.qte}}]</span></td>
+            <td>
+              {{livraison.commande.client.nom}}.{{livraison.commande.client.prenom}}
+            </td>
+            <td> {{livraison.commande.client.tel}}</td>
+            <td> {{livraison.commande.adresse}}</td>
+            <td>{{livraison.livreur.nom}}.{{livraison.livreur.prenom}}</td>
+            <td>{{livraison.livreur.prix}}</td>
+            <td>{{livraison.commande.prix}}</td>
+            <td>{{somme(livraison.livreur.prix,livraison.commande.prix)}}</td>
+            
+            <td>
+
+              <a class="btn btn-danger"style="font-size:medium;color:
+                darkred;background-color:white" title="supprimer"
+                (click)="deleteLivraison(livraison.idlivraison);"><i class="fa
+                  fa-trash"></i></a>
+              <a class="btn btn-success" style="font-size:medium;color: rgb(0,
+                139, 63);background-color:white" title="Modifier"
+                (click)="Updatelivraison(livraison.idlivraison);"><i class="fa
+                  fa-edit"></i></a>
+
+            </td>
+          </tr>
+
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-8">
+      <div class="card card-chart">
+        <div class="card-header">
+          <h5 class="card-title">Ajouter une livraison</h5>
+          <p class="card-category"></p>
+        </div>
+
+        <div class="card-footer">
+          <form method="post">
+
+
+            <div class="col-md-12">
+              <label class="control-label">Commande</label><br />
+              <select [(ngModel)]="selectedCommande" friendly-name="commande"
+                id="commande" name="commande" class="col-md-6 form-control"
+                ng-required="true" (ngModelChange)='onSelected($event)'>
+
+
+                <option *ngFor='let commande of
+                  commandes'[ngValue]="commande.id_com"><p
+                    *ngIf="commande.etat=='PRETE' &&
+                    commande.type=='LIVRAISON'">{{commande.client.nom}}.{{commande.client.prenom}}</option>
+                </select>
+              </div>
+              <br><br>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="livreur"> Livreur</label>
+                  <select [(ngModel)]="selectedLivreur" friendly-name="livreur"
+                    id="livreur" name="livreur" class="col-md-6 form-control"
+                    ng-required="true" (ngModelChange)='onChange($event)'>
+                    <option *ngFor='let livreur of livreurs'
+                      [ngValue]="livreur.idlivreur">{{livreur.nom}}.{{livreur.prenom}}</option>
+                  </select>
+
+                </div>
+              </div>
+
+
+              <br><br>
+              <div class="row">
+                <div class="update ml-auto mr-auto">
+                  <button type="submit" class="btn btn-primary btn-round"
+                    (click)="saveLivraison()">Ajouter</button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>

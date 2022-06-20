@@ -1,0 +1,54 @@
+
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-5"></div>
+  <div class="col-md-3">
+    <button type="submit" class="btn btn-primary btn-round"
+      (click)="saveRecette()">Ajouter</button>
+  </div>
+</div>
+
+<br>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <td> </td><td></td><td> <td> </td>
+      <div class="input-group no-border">
+        <input type="date"  [(ngModel)]="date" (input)="search()"  class="form-control" placeholder="Search...">
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <i class="nc-icon nc-zoom-split"></i>
+          </div>
+        </div>
+      </div>
+        <table class="table table-striped">
+          <tr><td>ID</td><td>Date</td><td>Les Revenus/DT</td><td>Les depenses/DT</td><td>Recette
+              NET/DT</td><td>Actions</td></tr>
+          <tr *ngFor="let recette of recettes">
+            <td>{{recette.idR}}</td>
+            <td>{{recette.date | date:'longDate'}}</td>
+            <td>{{recette.somme}}</td>
+            <td>{{recette.depenses}}</td>
+            <td>{{net(recette.somme,recette.depenses)}}</td>
+
+
+
+            <td>
+              <a class="btn btn-danger"style="font-size:medium;color:
+                darkred;background-color:white" title="supprimer"
+                (click)="deleteRecette(recette.idR);"><i class="fa fa-trash"></i></a>
+              <a class="btn btn-success" style="font-size:medium;color: rgb(0,
+                139, 63);background-color:white" title="Modifier"
+                (click)="Updaterecette(recette.idR);"><i class="fa fa-edit"></i></a>
+            </td>
+
+          </table>
+          <div class="card-footer">
+            <hr>
+            <div class="stats">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
